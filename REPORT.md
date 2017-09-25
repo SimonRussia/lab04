@@ -21,12 +21,12 @@ $ export GITHUB_USERNAME=<имя_пользователя>
 
 >Подготовка к выполнению Лабораторной работы №4.
 ```ShellSession
-$ # Копируем репозиторий Лаб. №3 в каталог Лаб. №4.
+$ # Копируем репозиторий Лаб.№3 в каталог Лаб.№4.
 $ git clone https://github.com/${GITHUB_USERNAME}/lab03.git lab04
 $ cd lab04
-$ # Локально отключаемся от ветки Лаб. №3.
+$ # Локально отключаемся от ветки Лаб.№3.
 $ git remote remove origin
-$ # Подключаемся к ветке Лаб. №4.
+$ # Подключаемся к ветке Лаб.№4.
 $ git remote add origin https://github.com/${GITHUB_USERNAME}/lab04.git
 ```
 
@@ -68,12 +68,12 @@ $ rm -rf log.txt
 $ cat > CMakeLists.txt <<EOF
 $ # Проверка версии CMake. (Если версия установленой программы старее указаной, произайдёт аварийный выход).
 cmake_minimum_required(VERSION 3.0)
-$ # Название проекта
+$ # Название проекта.
 project(print)
 EOF
 ```
 
->Редактируем файл 'CMakeLists.txt'. _**(#2)**_
+Редактируем файл 'CMakeLists.txt'. _**(#2)**_
 ```ShellSession
 $ cat >> CMakeLists.txt <<EOF
 $ # Установка переменной CMAKE_CXX_STANDARD со значением 11.
@@ -140,9 +140,9 @@ $ cat log.txt && echo
 hello
 ```
 
->Скачиваем файл 'CMakeLists.txt' из репозитория Лаб. №4.
+>Скачиваем файл 'CMakeLists.txt' из репозитория Лаб.№4.
 ```ShellSession
-$ # Скачиваем содержимое репозитория Лаб. №4.
+$ # Скачиваем содержимое репозитория Лаб.№4.
 $ git clone https://github.com/tp-labs/lab04 tmp
 $ # Переносим файл 'CMakeLists.txt' в основной каталог.
 $ mv -f tmp/CMakeLists.txt .
@@ -166,13 +166,13 @@ $ cmake --build _build --target install
 $ tree _install
 ```
 
->Заключительный этап Лаб. №4.
+>Заключительный этап Лаб.№4.
 ```ShellSession
 $ # Индексируем файл 'CMakeLists.txt'.
 $ git add CMakeLists.txt
 $ # Создаем 'commit'.
 $ git commit -m"added CMakeLists.txt"
-$ # Выгружаем локальную ветку в репозиторий Лаб. №4.
+$ # Выгружаем локальную ветку в репозиторий Лаб.№4.
 $ git push origin master
 ```
 
