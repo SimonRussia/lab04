@@ -149,12 +149,16 @@ $ cmake --build _build --target example1
 $ cmake --build _build --target example2
 ```
 
->
+>Проверяем собранные в cmake файлы.
 ```ShellSession
+$ # Отображает полную информацию о файлах в конкретной дериктории включая скрытые.
 $ ls -la _build/libprint.a
+$ # Собираем example1 и печатаем содержимое.
 $ _build/example1 && echo
 hello
+$ # Собираем example2.
 $ _build/example2
+$ # Выводим в поток и печатаем содержимое.
 $ cat log.txt && echo
 hello
 ```
