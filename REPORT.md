@@ -21,12 +21,12 @@ $ export GITHUB_USERNAME=<имя_пользователя>
 
 >Подготовка к выполнению Лабораторной работы №4.
 ```ShellSession
-#Копируем репозиторий Лаб. №3 в каталог Лаб. №4.
+$ # Копируем репозиторий Лаб. №3 в каталог Лаб. №4.
 $ git clone https://github.com/${GITHUB_USERNAME}/lab03.git lab04
 $ cd lab04
-#Локально отключаемся от ветки Лаб. №3.
+$ # Локально отключаемся от ветки Лаб. №3.
 $ git remote remove origin
-#Подключаемся к ветке Лаб. №4.
+$ # Подключаемся к ветке Лаб. №4.
 $ git remote add origin https://github.com/${GITHUB_USERNAME}/lab04.git
 ```
 
@@ -53,48 +53,48 @@ $ cat log.txt && echo
 
 >Удаляем файлы.
 ```ShellSession
-#Стираем объектные файлы.
+$ # Стираем объектные файлы.
 $ rm -rf example1.o example2.o print.o
-#Стираем архив.
+$ # Стираем архив.
 $ rm -rf print.a
-#Стираем исполняемые файлы.
+$ # Стираем исполняемые файлы.
 $ rm -rf example1 example2
-#Стираем текстовый файл.
+$ # Стираем текстовый файл.
 $ rm -rf log.txt
 ```
 
->**(#1)** Редактируем файл 'CMakeLists.txt'.
+>Редактируем файл 'CMakeLists.txt'. _**(#1)**_
 ```ShellSession
 $ cat > CMakeLists.txt <<EOF
-#Проверка версии CMake. (Если версия установленой программы старее указаной, произайдёт аварийный выход).
+$ # Проверка версии CMake. (Если версия установленой программы старее указаной, произайдёт аварийный выход).
 cmake_minimum_required(VERSION 3.0)
-#Название проекта
+$ # Название проекта
 project(print)
 EOF
 ```
 
->*(#2)* Редактируем файл 'CMakeLists.txt'.
+>Редактируем файл 'CMakeLists.txt'. _**(#2)**_
 ```ShellSession
 $ cat >> CMakeLists.txt <<EOF
-#Установка переменной CMAKE_CXX_STANDARD со значением 11.
+$ # Установка переменной CMAKE_CXX_STANDARD со значением 11.
 set(CMAKE_CXX_STANDARD 11)
-#Установка переменной CMAKE_CXX_STANDARD_REQUIRED со значением ON.
+$ # Установка переменной CMAKE_CXX_STANDARD_REQUIRED со значением ON.
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 EOF
 ```
 
->*(#3)* Редактируем файл 'CMakeLists.txt'.
+>Редактируем файл 'CMakeLists.txt'.  _**(#3)**_
 ```ShellSession
 $ cat >> CMakeLists.txt <<EOF
-#Создание статической библиотеки с именем print.
+$ # Создание статической библиотеки с именем print.
 add_library(print STATIC \${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
 EOF
 ```
 
->*(#4)* Редактируем файл 'CMakeLists.txt'.
+>Редактируем файл 'CMakeLists.txt'.  _**(#4)**_
 ```ShellSession
 $ cat >> CMakeLists.txt <<EOF
-#Добавляем путь к 'include' для заголовочных файлов.
+$ # Добавляем путь к 'include' для заголовочных файлов.
 include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/include)
 EOF
 ```
@@ -107,9 +107,9 @@ $ cmake --build _build
 >Создает исполняемые файл.
 ```ShellSession
 $ cat >> CMakeLists.txt <<EOF
-#Создает исполняемый файл с именем example1.
+$ # Создает исполняемый файл с именем example1.
 add_executable(example1 \${CMAKE_CURRENT_SOURCE_DIR}/examples/example1.cpp)
-#Создает исполняемый файл с именем example2.
+$ # Создает исполняемый файл с именем example2.
 add_executable(example2 \${CMAKE_CURRENT_SOURCE_DIR}/examples/example2.cpp)
 EOF
 ```
@@ -117,7 +117,7 @@ EOF
 >Линкуем программы с библиотекой.
 ```ShellSession
 $ cat >> CMakeLists.txt <<EOF
-#Линковка программ example с библиотекой print.
+$ # Линковка программ example с библиотекой print.
 target_link_libraries(example1 print)
 target_link_libraries(example2 print)
 EOF
@@ -142,25 +142,25 @@ hello
 
 >Скачиваем файл 'CMakeLists.txt' из репозитория Лаб. №4.
 ```ShellSession
-#Скачиваем содержимое репозитория Лаб. №4.
+$ # Скачиваем содержимое репозитория Лаб. №4.
 $ git clone https://github.com/tp-labs/lab04 tmp
-#Переносим файл 'CMakeLists.txt' в основной каталог.
+$ # Переносим файл 'CMakeLists.txt' в основной каталог.
 $ mv -f tmp/CMakeLists.txt .
-#Стираем дерикторию 'tmp'
+$ # Стираем дерикторию 'tmp'
 $ rm -rf tmp
 ```
 
 >Настройки cmake проекта.
 ```ShellSession
-#Выводим файл 'CMakeLists.txt' в стандартный вывод.
+$ # Выводим файл 'CMakeLists.txt' в стандартный вывод.
 $ cat CMakeLists.txt
-#-H. устанавливаем каталог в который сгенерируется файл 'CMakeLists.txt'.
-#-B_build указывает директорию для собираемых файлов. !(Используется только в связке с -H).
-#-D - заменяет команду 'set'. Пример: set(CMAKE_INSTALL_PREFIX _install).
+$ # -H. устанавливаем каталог в который сгенерируется файл 'CMakeLists.txt'.
+$ # -B_build указывает директорию для собираемых файлов. !(Используется только в связке с -H).
+$ # -D - заменяет команду 'set'. Пример: set(CMAKE_INSTALL_PREFIX _install).
 $ cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
-#--build _build создает бинарное дерево проекта.
-#--target указывает необходимые для обработки цели. (В данном примере будет обработан target install)
-#Если не указывать --target, то, по умолчанию, будут обработаны все target указанные в 'CMakeLists.txt'.
+$ # --build _build создает бинарное дерево проекта.
+$ # --target указывает необходимые для обработки цели. (В данном примере будет обработан target install)
+$ # Если не указывать --target, то, по умолчанию, будут обработаны все target указанные в 'CMakeLists.txt'.
 $ cmake --build _build --target install
 #tree графически выводит в териминале структуру проекта.
 $ tree _install
@@ -168,11 +168,11 @@ $ tree _install
 
 >Заключительный этап Лаб. №4.
 ```ShellSession
-#Индексируем файл 'CMakeLists.txt'.
+$ # Индексируем файл 'CMakeLists.txt'.
 $ git add CMakeLists.txt
-#Создаем 'commit'.
+$ # Создаем 'commit'.
 $ git commit -m"added CMakeLists.txt"
-#Выгружаем локальную ветку в репозиторий Лаб. №4.
+$ # Выгружаем локальную ветку в репозиторий Лаб. №4.
 $ git push origin master
 ```
 
