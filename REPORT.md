@@ -112,8 +112,11 @@ include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/include)
 EOF
 ```
 
+>Настройка расположения **cmake** проекта.
 ```ShellSession
+$ # Указываем корень и каталог для генерируемых файлов.
 $ cmake -H. -B_build
+$ # Создаем бинарное дерево проекта.
 $ cmake --build _build
 ```
 
@@ -136,14 +139,17 @@ target_link_libraries(example2 print)
 EOF
 ```
 
-
+>Инициализируем необходимые _**target**_ для сборки проекта.
 ```ShellSession
+$ # Cоздает бинарное дерево проекта.
 $ cmake --build _build
+$ # Указывает необходимые для обработки цели (print, example1, example2).
 $ cmake --build _build --target print
 $ cmake --build _build --target example1
 $ cmake --build _build --target example2
 ```
 
+>
 ```ShellSession
 $ ls -la _build/libprint.a
 $ _build/example1 && echo
@@ -157,9 +163,9 @@ hello
 ```ShellSession
 $ # Скачиваем содержимое репозитория Лаб.№4.
 $ git clone https://github.com/tp-labs/lab04 tmp
-$ # Переносим файл 'CMakeLists.txt' в основной каталог.
+$ # Переносим файл **CMakeLists.txt** в основной каталог.
 $ mv -f tmp/CMakeLists.txt .
-$ # Стираем дерикторию 'tmp'
+$ # Стираем дерикторию _**tmp**_.
 $ rm -rf tmp
 ```
 
@@ -167,15 +173,15 @@ $ rm -rf tmp
 ```ShellSession
 $ # Выводим файл **CMakeLists.txt** в стандартный вывод.
 $ cat CMakeLists.txt
-$ # -H. устанавливаем каталог в который сгенерируется файл **CMakeLists.txt**.
-$ # -B_build указывает директорию для собираемых файлов. !(Используется только в связке с -H).
-$ # -D - заменяет команду _**set**_. Пример: set(CMAKE_INSTALL_PREFIX _install).
+$ # _**-H.**_ устанавливаем каталог в который сгенерируется файл **CMakeLists.txt**.
+$ # _**-B_build**_ указывает директорию для собираемых файлов. !(Используется только в связке с -H).
+$ # _**-D**_ заменяет команду _**set**_. _Пример: set(CMAKE_INSTALL_PREFIX _install)._
 $ cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
-$ # --build _build создает бинарное дерево проекта.
-$ # --target указывает необходимые для обработки цели. (В данном примере будет обработан target install)
-$ # Если не указывать --target, то, по умолчанию, будут обработаны все target указанные в **CMakeLists.txt**.
+$ # _**--build _build**_ создает бинарное дерево проекта.
+$ # _**--target**_ указывает необходимые для обработки цели. (В данном примере будет обработан target install)
+$ # Если не указывать _**--target**_, то, по умолчанию, будут обработаны все target указанные в **CMakeLists.txt**.
 $ cmake --build _build --target install
-#tree графически выводит в териминале структуру проекта.
+$ # _**tree**_ графически выводит в териминале структуру проекта.
 $ tree _install
 ```
 
